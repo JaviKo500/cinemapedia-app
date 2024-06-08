@@ -15,7 +15,7 @@ class MovieMapper {
       popularity: movieDb.popularity,
       posterPath: movieDb.posterPath.isNotEmpty 
         ? 'https://image.tmdb.org/t/p/w500${movieDb.posterPath}'
-        : 'https://static.vecteezy.com/system/resources/previews/008/382/505/original/illustration-of-astronaut-in-space-for-404-website-error-page-not-found-text-cute-template-with-planet-stars-for-poster-banner-or-website-page-vector.jpg',
+        : 'no-poster',
       releaseDate: movieDb.releaseDate,
       title: movieDb.title,
       video: movieDb.video,
