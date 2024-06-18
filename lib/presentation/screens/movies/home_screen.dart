@@ -33,7 +33,8 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     if (nowPlayingMovies.isEmpty) return const CircularProgressIndicator();
     return Column(
       children: [
-        CustomAppBar(),
+        const CustomAppBar(),
+        MoviesSlideShow(movies: nowPlayingMovies ),
         Expanded(
           child: ListView.builder(
             itemCount: nowPlayingMovies.length,
