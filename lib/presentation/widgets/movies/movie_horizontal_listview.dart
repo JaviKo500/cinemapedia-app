@@ -30,7 +30,7 @@ class _Title extends StatelessWidget {
   final String? subTitle;
   
   const _Title({
-    super.key, this.title, this.subTitle,
+    this.title, this.subTitle,
   });
 
   @override
