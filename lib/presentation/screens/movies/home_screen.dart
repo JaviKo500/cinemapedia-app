@@ -37,17 +37,57 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
     final moviesSlideShow = ref.watch(moviesSlidesShowProvider);
     if (moviesSlideShow.isEmpty) return const CircularProgressIndicator();
-    return Column(
-      children: [
-        const CustomAppBar(),
-        MoviesSlideShow(movies: moviesSlideShow ),
-        MovieHorizontalListView(
-          movies: nowPlayingMovies,
-          title: 'In cinema',
-          subTitle: 'Monday 20',
-          loadNextPage: () => ref.read( nowPlayingMoviesProvider.notifier).loadNextPage(),
-        )
-      ],
-    );
+    return CustomScrollView(slivers: [
+      const SliverAppBar(
+        floating: true,
+
+        flexibleSpace: FlexibleSpaceBar(
+          titlePadding: EdgeInsets.all(0),
+          title: CustomAppBar(),
+        ),
+      ),
+      SliverList(
+        delegate: SliverChildBuilderDelegate((
+        context,
+        index,
+      ) {
+        return Column(
+          children: [
+            MoviesSlideShow(movies: moviesSlideShow),
+            MovieHorizontalListView(
+              movies: nowPlayingMovies,
+              title: 'In cinema',
+              subTitle: 'Monday 20',
+              loadNextPage: () =>
+                  ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+            ),
+            MovieHorizontalListView(
+              movies: nowPlayingMovies,
+              title: 'Next movies',
+              subTitle: 'This month',
+              loadNextPage: () =>
+                  ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+            ),
+            MovieHorizontalListView(
+              movies: nowPlayingMovies,
+              title: 'Populate',
+              // subTitle: 'Monday 31',
+              loadNextPage: () =>
+                  ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+            ),
+            MovieHorizontalListView(
+              movies: nowPlayingMovies,
+              title: 'Better reviews',
+              subTitle: 'All movies',
+              loadNextPage: () =>
+                  ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+          ],
+        );
+      }, childCount: 1)),
+    ]);
   }
 }
