@@ -85,8 +85,8 @@ class _Slide extends StatelessWidget {
                 loadingBuilder: (context, child, loadingProgress) {
                   if ( loadingProgress != null) {
                     return const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: CircularProgressIndicator( strokeWidth:  2 ),
+                      padding: EdgeInsets.only(right: 54, left: 54, bottom: 12, top: 12),
+                      child: CircularProgressIndicator( strokeWidth:  2,  ),
                     );
                   }
                   return FadeIn(child: child);

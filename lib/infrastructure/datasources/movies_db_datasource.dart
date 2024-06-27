@@ -6,7 +6,6 @@ import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:cinemapedia/infrastructure/mappers/movie_mapper.dart';
 import 'package:cinemapedia/infrastructure/models/movie_db/movie_db_response.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 
 class MoviesDbDatasource extends MoviesDatasource{
   
@@ -47,9 +46,26 @@ class MoviesDbDatasource extends MoviesDatasource{
         'page': page,
       }
     );
-    if (kDebugMode) {
-      print(response.data);
-    }
+    return _jsonToMovies( response.data );
+  }
+  
+  @override
+  Future<List<Movie>> getTopRated({int page = 1}) async {
+    final  response = await dio.get('/movie/top_rated', 
+      queryParameters: {
+        'page': page,
+      }
+    );
+    return _jsonToMovies( response.data );
+  }
+  
+  @override
+  Future<List<Movie>> getUpComing({int page = 1}) async {
+   final  response = await dio.get('/movie/upcoming', 
+      queryParameters: {
+        'page': page,
+      }
+    );
     return _jsonToMovies( response.data );
   }
 }

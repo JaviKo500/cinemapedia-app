@@ -16,6 +16,20 @@ final popularMoviesProvider = StateNotifierProvider< MoviesNotifiers, List<Movie
   );
 });
 
+final upComingMoviesProvider = StateNotifierProvider< MoviesNotifiers, List<Movie> >((ref) {
+  final fetchMoreMovies = ref.watch( movieRepositoryProvider ).getUpComing;
+  return MoviesNotifiers(
+    fetchMoreMovies: fetchMoreMovies
+  );
+});
+
+final topRatedMoviesProvider = StateNotifierProvider< MoviesNotifiers, List<Movie> >((ref) {
+  final fetchMoreMovies = ref.watch( movieRepositoryProvider ).getTopRated;
+  return MoviesNotifiers(
+    fetchMoreMovies: fetchMoreMovies
+  );
+});
+
 typedef MovieCallback = Future< List<Movie> > Function ({ int page });
 
 class MoviesNotifiers extends StateNotifier< List<Movie> > {

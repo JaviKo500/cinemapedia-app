@@ -31,12 +31,16 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     super.initState();
     ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
     ref.read(popularMoviesProvider.notifier).loadNextPage();
+    ref.read(upComingMoviesProvider.notifier).loadNextPage();
+    ref.read(topRatedMoviesProvider.notifier).loadNextPage();
   }
 
   @override
   Widget build(BuildContext context) {
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
     final popularMovies = ref.watch(popularMoviesProvider);
+    final upComingMovies = ref.watch(upComingMoviesProvider);
+    final topRatedMovies = ref.watch(topRatedMoviesProvider);
     final moviesSlideShow = ref.watch(moviesSlidesShowProvider);
     if (moviesSlideShow.isEmpty) return const CircularProgressIndicator();
     return CustomScrollView(slivers: [
@@ -64,11 +68,11 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                   ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
             ),
             MovieHorizontalListView(
-              movies: nowPlayingMovies,
+              movies: upComingMovies,
               title: 'Next movies',
               subTitle: 'This month',
               loadNextPage: () =>
-                  ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+                  ref.read(upComingMoviesProvider.notifier).loadNextPage(),
             ),
             MovieHorizontalListView(
               movies: popularMovies,
@@ -78,11 +82,11 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                   ref.read(popularMoviesProvider.notifier).loadNextPage(),
             ),
             MovieHorizontalListView(
-              movies: nowPlayingMovies,
+              movies: topRatedMovies,
               title: 'Better reviews',
               subTitle: 'All movies',
               loadNextPage: () =>
-                  ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+                  ref.read(topRatedMoviesProvider.notifier).loadNextPage(),
             ),
             const SizedBox(
               height: 50,
