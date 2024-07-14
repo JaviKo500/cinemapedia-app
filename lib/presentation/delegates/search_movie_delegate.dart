@@ -36,7 +36,7 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
               onMovieSelected: ( context, movie ) {
                 clearStreams();
                 close(context, movie);
-              } , 
+              },
             );
           },
         );

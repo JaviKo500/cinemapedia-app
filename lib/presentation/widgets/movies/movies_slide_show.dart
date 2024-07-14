@@ -76,7 +76,7 @@ class _Slide extends StatelessWidget {
               ),
             ),
           ),
-          onTap: () => context.push('/movie/${movie.id}'),
+          onTap: () => context.push('/home/0/movie/${movie.id}'),
       ),
     );
   }
