@@ -220,7 +220,7 @@ class _CustomSliverAppBar extends StatelessWidget {
                 0.2,
               ],
               colors: [
-                Colors.black87,
+                Colors.black54,
                 Colors.transparent,
               ]
             ),
@@ -228,7 +228,7 @@ class _CustomSliverAppBar extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               stops: [
-                0.7,
+                0.8,
                 1.0
               ],
               colors: [
@@ -243,7 +243,7 @@ class _CustomSliverAppBar extends StatelessWidget {
                 0.2
               ],
               colors: [
-                Colors.black87,
+                Colors.black54,
                 Colors.transparent,
               ]
             ),
