@@ -1,24 +1,53 @@
 import 'package:cinemapedia/presentation/screens/screens.dart';
-import 'package:cinemapedia/presentation/views/home_views/favorites_view.dart';
+import 'package:cinemapedia/presentation/views/views.dart';
 import 'package:go_router/go_router.dart';
 
 final appRouter = GoRouter(
   initialLocation: '/',
   routes: [
-    GoRoute(
-      path: '/',
-      name: HomeScreen.name,
-      builder: (context, state) => const HomeScreen( childView: FavoritesView(), ),
+    ShellRoute(
+      builder: (context, state, child) {
+        return HomeScreen(childView: child);
+      },
       routes: [
         GoRoute(
-          path: 'movie/:id',
-          name: MovieScreen.name,
+          path: '/',
           builder: (context, state) {
-            final movieId = state.pathParameters['id'] ?? 'not-id';
-            return MovieScreen( movieId: movieId, );
+            return const HomeView();
+          },
+          routes: [
+            GoRoute(
+              path: 'movie/:id',
+              name: MovieScreen.name,
+              builder: (context, state) {
+                final movieId = state.pathParameters['id'] ?? 'not-id';
+                return MovieScreen( movieId: movieId, );
+              },
+            ),
+          ]
+        ),
+        GoRoute(
+          path: '/favorites',
+          builder: (context, state) {
+            return const FavoritesView();
           },
         ),
       ]
-    ),
+    )
+    // GoRoute(
+    //   path: '/',
+    //   name: HomeScreen.name,
+    //   builder: (context, state) => const HomeScreen( childView: FavoritesView(), ),
+    //   routes: [
+    //     GoRoute(
+    //       path: 'movie/:id',
+    //       name: MovieScreen.name,
+    //       builder: (context, state) {
+    //         final movieId = state.pathParameters['id'] ?? 'not-id';
+    //         return MovieScreen( movieId: movieId, );
+    //       },
+    //     ),
+    //   ]
+    // ),
   ]
 );
