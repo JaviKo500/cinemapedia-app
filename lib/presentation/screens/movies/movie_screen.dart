@@ -213,7 +213,7 @@ class _CustomSliverAppBar extends ConsumerWidget {
         titlePadding: const EdgeInsets.symmetric( horizontal: 10, vertical: 5),
         title: Text( 
           movie.title,
-          style: const TextStyle( fontSize: 20 ),
+          style: const TextStyle( fontSize: 20, color: Colors.white ),
           textAlign: TextAlign.start,
         ),
         background: Stack(
